@@ -1,4 +1,4 @@
-package com.github.francoagarcia.social.jpa;
+package com.github.francoagarcia.social.querydsl;
 
 import com.github.francoagarcia.social.domain.*;
 import org.junit.Test;
@@ -14,17 +14,17 @@ import java.util.Optional;
 
 import static org.junit.Assert.*;
 
-
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @Transactional
 @ContextConfiguration(classes = JpaTestConfiguration.class)
-public class FindMessageJpaSpecificationTest {
+public class FindMessageQueryPredicateTest{
     @Autowired
     private MessageRepository messageRepository;
 
     @Autowired
     private UserRepository userRepository;
+
 
     @Test
     public void authoredBy() throws Exception {
@@ -33,12 +33,11 @@ public class FindMessageJpaSpecificationTest {
 
         userRepository.save(user);
 
-        FindMessageQuery query = new FindMessageJpaSpecification(messageRepository);
+        FindMessageQuery query = new FindMessageQueryPredicate(messageRepository);
         query.setAuthor(Optional.of(user));
 
         assertEquals(message, query.findOne().get());
     }
-
 
     @Test
     public void authorName() throws Exception {
@@ -47,7 +46,7 @@ public class FindMessageJpaSpecificationTest {
 
         userRepository.save(user);
 
-        FindMessageQuery query = new FindMessageJpaSpecification(messageRepository);
+        FindMessageQuery query = new FindMessageQueryPredicate(messageRepository);
         query.setAuthorName(Optional.of(user.getUsername()));
 
         assertEquals(message, query.findOne().get());
@@ -60,7 +59,7 @@ public class FindMessageJpaSpecificationTest {
 
         userRepository.save(user);
 
-        FindMessageJpaSpecification query = new FindMessageJpaSpecification(messageRepository);
+        FindMessageQueryPredicate query = new FindMessageQueryPredicate(messageRepository);
         query.setAuthor(Optional.of(user));
         query.setPublishedBefore(Optional.of(LocalDateTime.now().plusDays(1)));
 
@@ -76,7 +75,7 @@ public class FindMessageJpaSpecificationTest {
 
         userRepository.save(user);
 
-        FindMessageJpaSpecification query = new FindMessageJpaSpecification(messageRepository);
+        FindMessageQueryPredicate query = new FindMessageQueryPredicate(messageRepository);
         query.setAuthor(Optional.of(user));
         query.setPublishedAfter(Optional.of(LocalDateTime.now().minusDays(1)));
 
@@ -93,7 +92,7 @@ public class FindMessageJpaSpecificationTest {
 
         userRepository.save(user);
 
-        FindMessageQuery query = new FindMessageJpaSpecification(messageRepository);
+        FindMessageQuery query = new FindMessageQueryPredicate(messageRepository);
         query.setContains(Optional.of("SUNNY"));
 
         assertEquals(1, query.count());
@@ -110,7 +109,7 @@ public class FindMessageJpaSpecificationTest {
 
         userRepository.save(user);
 
-        FindMessageQuery query = new FindMessageJpaSpecification(messageRepository);
+        FindMessageQuery query = new FindMessageQueryPredicate(messageRepository);
         query.setAuthor(Optional.of(user));
         query.setPublishedBefore(Optional.of(LocalDateTime.now().minusDays(1)));
         Optional<Message> maybeFound = query.findOne();
@@ -118,3 +117,4 @@ public class FindMessageJpaSpecificationTest {
         assertFalse(maybeFound.isPresent());
     }
 }
+

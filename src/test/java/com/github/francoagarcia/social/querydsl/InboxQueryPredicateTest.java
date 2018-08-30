@@ -21,7 +21,7 @@ import static org.junit.Assert.assertEquals;
 @DataJpaTest
 @Transactional
 @ContextConfiguration(classes = JpaTestConfiguration.class)
-public class InboxQueryDslPredicateTest {
+public class InboxQueryPredicateTest{
     @Autowired
     private MessageRepository messageRepository;
 
@@ -52,7 +52,7 @@ public class InboxQueryDslPredicateTest {
         userRepository.save(celebrity1);
         userRepository.save(celebrity2);
 
-        InboxQuery inboxQuery = new InboxQueryDslPredicate(messageRepository);
+        InboxQuery inboxQuery = new InboxQueryPredicate(messageRepository);
         inboxQuery.setUserId(follower.getId());
 
         ArrayList<Message> messages = new ArrayList<>();

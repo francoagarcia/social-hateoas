@@ -15,11 +15,4 @@ public interface Query<T> {
     Iterable<T> findAll(Sort sort);
     Optional<T> findOne();
     long count();
-
-    default Stream<T> streamAll(boolean parallel) {
-        return stream(findAll().spliterator(), parallel);
-    }
-    default Stream<T> streamAll(Sort sort, boolean parallel) {
-        return stream(findAll(sort).spliterator(), parallel);
-    }
 }

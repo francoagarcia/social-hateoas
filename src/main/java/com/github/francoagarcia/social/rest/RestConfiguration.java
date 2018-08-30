@@ -2,9 +2,9 @@ package com.github.francoagarcia.social.rest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.francoagarcia.social.domain.*;
-import com.github.francoagarcia.social.querydsl.FindMessageQueryDslPredicate;
-import com.github.francoagarcia.social.querydsl.GetMessageByIdQueryDslPredicate;
-import com.github.francoagarcia.social.querydsl.InboxQueryDslPredicate;
+import com.github.francoagarcia.social.querydsl.FindMessageQueryPredicate;
+import com.github.francoagarcia.social.querydsl.GetMessageByIdQueryPredicate;
+import com.github.francoagarcia.social.querydsl.InboxQueryPredicate;
 import com.github.francoagarcia.social.rest.command.*;
 import org.springframework.boot.autoconfigure.web.HttpMessageConverters;
 import org.springframework.context.ApplicationContext;
@@ -35,17 +35,17 @@ public class RestConfiguration {
 
     @Bean @Scope(SCOPE_PROTOTYPE)
     public GetMessageByIdQuery getMessageByIdQuery(MessageRepository repository) {
-        return new GetMessageByIdQueryDslPredicate(repository);
+        return new GetMessageByIdQueryPredicate(repository);
     }
 
     @Bean @Scope(SCOPE_PROTOTYPE)
     public FindMessageQuery findMessageQuery(MessageRepository repository) {
-        return new FindMessageQueryDslPredicate(repository);
+        return new FindMessageQueryPredicate(repository);
     }
 
     @Bean @Scope(SCOPE_PROTOTYPE)
     public InboxQuery inboxQuery(MessageRepository repository) {
-        return new InboxQueryDslPredicate(repository);
+        return new InboxQueryPredicate(repository);
     }
 
     @Bean @Scope(SCOPE_PROTOTYPE)

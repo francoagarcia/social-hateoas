@@ -9,10 +9,10 @@ import org.springframework.data.querydsl.QueryDslPredicateExecutor;
 
 import java.util.Optional;
 
-public abstract class QueryDslPredicate<T> implements Query<T>{
+public abstract class QueryPredicate<T> implements Query<T>{
     private final QueryDslPredicateExecutor<T> executor;
 
-    public QueryDslPredicate(QueryDslPredicateExecutor<T> repository) {
+    public QueryPredicate(QueryDslPredicateExecutor<T> repository) {
         this.executor = repository;
     }
 

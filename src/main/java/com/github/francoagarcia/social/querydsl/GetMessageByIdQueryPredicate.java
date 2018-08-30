@@ -7,10 +7,10 @@ import com.querydsl.core.types.Predicate;
 
 import java.util.UUID;
 
-public class GetMessageByIdQueryDslPredicate extends QueryDslPredicate<Message> implements GetMessageByIdQuery {
+public class GetMessageByIdQueryPredicate extends QueryPredicate<Message> implements GetMessageByIdQuery {
     private UUID messageId;
 
-    public GetMessageByIdQueryDslPredicate(MessageRepository repository) {
+    public GetMessageByIdQueryPredicate(MessageRepository repository) {
         super(repository);
     }
 

@@ -13,12 +13,12 @@ import java.util.UUID;
 import static com.querydsl.jpa.JPAExpressions.select;
 import static java.util.Objects.requireNonNull;
 
-public class InboxQueryDslPredicate extends QueryDslPredicate<Message> implements InboxQuery{
+public class InboxQueryPredicate extends QueryPredicate<Message> implements InboxQuery {
     private final QueryDslPredicateExecutor<Message> repository;
 
     private UUID userId;
 
-    public InboxQueryDslPredicate(MessageRepository repository) {
+    public InboxQueryPredicate(MessageRepository repository) {
         super(repository);
         this.repository = repository;
     }

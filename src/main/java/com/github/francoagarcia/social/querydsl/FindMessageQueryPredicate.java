@@ -8,8 +8,8 @@ import com.github.francoagarcia.social.domain.User;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-public class FindMessageQueryDslPredicate extends ComposableQueryDslPredicate<Message> implements FindMessageQuery{
-    public FindMessageQueryDslPredicate(MessageRepository repository) {
+public class FindMessageQueryPredicate extends ComposableQueryPredicate<Message> implements FindMessageQuery {
+    public FindMessageQueryPredicate(MessageRepository repository) {
         super(repository);
     }
 

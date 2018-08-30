@@ -11,10 +11,10 @@ import java.util.Set;
 
 import static java.util.Arrays.asList;
 
-public  class ComposableQueryDslPredicate<T> extends QueryDslPredicate<T> {
+public class ComposableQueryPredicate<T> extends QueryPredicate<T>{
     private Set<Predicate> filters = new HashSet<>();
 
-    public ComposableQueryDslPredicate(QueryDslPredicateExecutor<T> repository) {
+    public ComposableQueryPredicate(QueryDslPredicateExecutor<T> repository) {
         super(repository);
     }
 

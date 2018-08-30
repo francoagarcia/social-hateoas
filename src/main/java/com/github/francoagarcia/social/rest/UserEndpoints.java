@@ -68,6 +68,7 @@ public class UserEndpoints {
             Pageable maybePageable,
             HttpServletRequest request) {
         Pageable pageable = Optional.ofNullable(maybePageable).orElse(new PageRequest(0, 20));
+
         Page<Message> page = query.findAll(pageable);
 
         return ok(MessageResource.builder().toResource(page, request, pageable));
